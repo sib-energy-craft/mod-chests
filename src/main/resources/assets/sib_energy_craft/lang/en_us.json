@@ -1,0 +1,13 @@
+{
+  "block.sib_energy_craft.iron_chest": "Iron Chest",
+  "container.iron_chest": "Iron Chest",
+
+  "block.sib_energy_craft.copper_chest": "Copper Chest",
+  "container.copper_chest": "Copper Chest",
+
+  "block.sib_energy_craft.gold_chest": "Gold Chest",
+  "container.gold_chest": "Gold Chest",
+
+  "block.sib_energy_craft.diamond_chest": "Diamond Chest",
+  "container.diamond_chest": "Diamond Chest"
+}

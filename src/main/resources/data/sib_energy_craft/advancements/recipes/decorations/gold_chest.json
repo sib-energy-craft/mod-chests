@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sib_energy_craft:gold_chest"
+    ]
+  },
+  "criteria": {
+    "has_copper_chest": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sib_energy_craft:copper_chest"
+            ]
+          }
+        ]
+      }
+    },
+    "has_gold_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sib_energy_craft:gold_plate"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sib_energy_craft:gold_chest"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_copper_chest",
+      "has_gold_plate",
+      "has_the_recipe"
+    ]
+  ]
+}
