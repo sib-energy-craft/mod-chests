@@ -1,5 +1,8 @@
 package com.github.sib_energy_craft.chests.block.entity;
 
+import com.github.sib_energy_craft.pipes.api.ItemConsumer;
+import com.github.sib_energy_craft.pipes.api.ItemSupplier;
+import com.github.sib_energy_craft.pipes.utils.PipeUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,14 +17,19 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @since 0.0.1
  * @author sibmaks
  */
-public abstract class AbstractExtendedChestBlockEntity extends LootableContainerBlockEntity implements LidOpenable {
+public abstract class AbstractExtendedChestBlockEntity extends LootableContainerBlockEntity implements LidOpenable,
+        ItemSupplier, ItemConsumer {
     private DefaultedList<ItemStack> inventory;
     private final ViewerCountManager stateManager;
     private final ChestLidAnimator lidAnimator;
@@ -175,5 +183,33 @@ public abstract class AbstractExtendedChestBlockEntity extends LootableContainer
                                        int newViewerCount) {
         var block = state.getBlock();
         world.addSyncedBlockEvent(pos, block, 1, newViewerCount);
+    }
+
+    @Override
+    public boolean canConsume(@NotNull ItemStack itemStack, @NotNull Direction direction) {
+        return PipeUtils.hasSpaceFor(this, itemStack);
+    }
+
+    @Override
+    public @NotNull ItemStack consume(@NotNull ItemStack itemStack, @NotNull Direction direction) {
+        return PipeUtils.consume(this, itemStack);
+    }
+
+    @Override
+    public @NotNull List<ItemStack> canSupply(@NotNull Direction direction) {
+        return inventory.stream()
+                .filter(it -> !it.isEmpty())
+                .map(ItemStack::copy)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean supply(@NotNull ItemStack requested, @NotNull Direction direction) {
+        return PipeUtils.supply(this, requested);
+    }
+
+    @Override
+    public void returnStack(@NotNull ItemStack requested, @NotNull Direction direction) {
+        PipeUtils.consume(this, requested);
     }
 }
