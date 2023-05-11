@@ -1,7 +1,7 @@
 package com.github.sib_energy_craft.chests.load;
 
 import com.github.sib_energy_craft.sec_utils.load.ModRegistrar;
-import net.minecraft.item.Item;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroups;
 
 import static com.github.sib_energy_craft.sec_utils.utils.ItemUtils.registerBlockItem;
@@ -12,10 +12,10 @@ import static com.github.sib_energy_craft.sec_utils.utils.ItemUtils.registerBloc
  * @author sibmaks
  */
 public final class Items implements ModRegistrar {
-    public static final Item COPPER_CHEST;
-    public static final Item IRON_CHEST;
-    public static final Item GOLD_CHEST;
-    public static final Item DIAMOND_CHEST;
+    public static final BlockItem COPPER_CHEST;
+    public static final BlockItem IRON_CHEST;
+    public static final BlockItem GOLD_CHEST;
+    public static final BlockItem DIAMOND_CHEST;
 
     static {
         COPPER_CHEST = registerBlockItem(ItemGroups.FUNCTIONAL, Blocks.COPPER_CHEST);
