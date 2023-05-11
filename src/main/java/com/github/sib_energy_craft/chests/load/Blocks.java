@@ -6,7 +6,7 @@ import com.github.sib_energy_craft.chests.block.GoldExtendedChestBlock;
 import com.github.sib_energy_craft.chests.block.IronExtendedChestBlock;
 import com.github.sib_energy_craft.energy_api.utils.Identifiers;
 import com.github.sib_energy_craft.sec_utils.common.Identified;
-import com.github.sib_energy_craft.sec_utils.load.ModRegistrar;
+import com.github.sib_energy_craft.sec_utils.load.DefaultModInitializer;
 import com.github.sib_energy_craft.sec_utils.utils.BlockUtils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Material;
@@ -17,7 +17,7 @@ import net.minecraft.sound.BlockSoundGroup;
  * @since 0.0.1
  * @author sibmaks
  */
-public final class Blocks implements ModRegistrar {
+public final class Blocks implements DefaultModInitializer {
     public static final Identified<CopperExtendedChestBlock> COPPER_CHEST;
     public static final Identified<IronExtendedChestBlock> IRON_CHEST;
     public static final Identified<GoldExtendedChestBlock> GOLD_CHEST;
