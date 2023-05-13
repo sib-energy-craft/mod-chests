@@ -1,7 +1,7 @@
 package com.github.sib_energy_craft.chests.block.entity;
 
 import com.github.sib_energy_craft.chests.load.Entities;
-import com.github.sib_energy_craft.chests.load.Screens;
+import com.github.sib_energy_craft.chests.client.load.Screens;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
