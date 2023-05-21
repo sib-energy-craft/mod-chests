@@ -1,7 +1,7 @@
 package com.github.sib_energy_craft.chests.block.entity;
 
 import com.github.sib_energy_craft.chests.load.Entities;
-import com.github.sib_energy_craft.chests.client.load.Screens;
+import com.github.sib_energy_craft.chests.load.ScreenHandlers;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
@@ -27,7 +27,7 @@ public class DiamondExtendedChestBlockEntity extends AbstractExtendedChestBlockE
     @Override
     protected ScreenHandler createScreenHandler(int syncId,
                                                 @NotNull PlayerInventory playerInventory) {
-        return new GenericContainerScreenHandler(Screens.GENERIC_9X7, syncId, playerInventory, this, 7);
+        return new GenericContainerScreenHandler(ScreenHandlers.DIAMOND_CHEST, syncId, playerInventory, this, 7);
     }
 
     @Override
