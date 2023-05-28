@@ -2,30 +2,28 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "sib_energy_craft:diamond_chest_upgrade_from_silver"
+      "sib_energy_craft:copper_chest_upgrade"
     ]
   },
   "criteria": {
-    "has_silver_chest_upgrade": {
+    "has_copper_plate": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "sib_energy_craft:silver_chest_upgrade"
+              "sib_energy_craft:copper_plate"
             ]
           }
         ]
       }
     },
-    "has_diamond": {
+    "has_planks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:diamond"
-            ]
+            "tag": "minecraft:planks"
           }
         ]
       }
@@ -33,14 +31,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "sib_energy_craft:diamond_chest_upgrade_from_silver"
+        "recipe": "sib_energy_craft:copper_chest_upgrade"
       }
     }
   },
   "requirements": [
     [
-      "has_silver_chest_upgrade",
-      "has_diamond",
+      "has_copper_plate",
+      "has_planks",
       "has_the_recipe"
     ]
   ]

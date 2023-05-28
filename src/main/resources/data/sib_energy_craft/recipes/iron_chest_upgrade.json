@@ -4,15 +4,15 @@
   "group": "iron_chest_upgrade",
   "pattern": [
     " # ",
-    "#C#",
+    "#U#",
     " # "
   ],
   "key": {
     "#": {
       "item": "sib_energy_craft:iron_plate"
     },
-    "C": {
-      "item": "sib_energy_craft:copper_plate"
+    "U": {
+      "item": "sib_energy_craft:copper_chest_upgrade"
     }
   },
   "result": {

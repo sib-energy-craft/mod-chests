@@ -19,14 +19,14 @@ import java.util.function.Function;
  * @since 0.0.8
  */
 public class ChestUpgradeItem extends Item {
-    private final ChestTier fromTier;
+    private final ChestTier toTier;
     private final Function<BlockState, BlockState> blockStateCreator;
 
     public ChestUpgradeItem(@NotNull Settings settings,
-                            @NotNull ChestTier fromTier,
+                            @NotNull ChestTier toTier,
                             @NotNull Function<BlockState, BlockState> blockStateCreator) {
         super(settings);
-        this.fromTier = fromTier;
+        this.toTier = toTier;
         this.blockStateCreator = blockStateCreator;
     }
 
@@ -39,7 +39,7 @@ public class ChestUpgradeItem extends Item {
 
         var blockPos = context.getBlockPos();
         var blockEntity = world.getBlockEntity(blockPos);
-        if(!(blockEntity instanceof UpgradeableChest upgradeableChest) || upgradeableChest.getTier() != fromTier) {
+        if(!(blockEntity instanceof UpgradeableChest upgradeableChest) || !toTier.isGreater(upgradeableChest.getTier())) {
             return ActionResult.PASS;
         }
         var inventory = copyInventory(upgradeableChest);

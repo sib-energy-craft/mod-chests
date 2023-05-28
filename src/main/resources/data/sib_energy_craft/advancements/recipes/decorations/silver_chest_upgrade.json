@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_iron_plate": {
+    "has_iron_chest_upgrade": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "sib_energy_craft:iron_plate"
+              "sib_energy_craft:iron_chest_upgrade"
             ]
           }
         ]
@@ -39,7 +39,7 @@
   },
   "requirements": [
     [
-      "has_iron_plate",
+      "has_iron_chest_upgrade",
       "has_silver_plate",
       "has_the_recipe"
     ]

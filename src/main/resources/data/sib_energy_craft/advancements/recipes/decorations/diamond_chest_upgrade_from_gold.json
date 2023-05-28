@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_gold_plate": {
+    "has_gold_chest_upgrade": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "sib_energy_craft:gold_plate"
+              "sib_energy_craft:gold_chest_upgrade"
             ]
           }
         ]
@@ -39,7 +39,7 @@
   },
   "requirements": [
     [
-      "has_gold_plate",
+      "has_gold_chest_upgrade",
       "has_diamond",
       "has_the_recipe"
     ]

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "copper_chest_upgrade",
+  "pattern": [
+    "###",
+    "#P#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "sib_energy_craft:copper_plate"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "sib_energy_craft:copper_chest_upgrade"
+  }
+}

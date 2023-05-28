@@ -27,6 +27,7 @@ public final class Items implements DefaultModInitializer {
     public static final ChestItem<SilverExtendedChestBlock> SILVER_CHEST;
     public static final ChestItem<DiamondExtendedChestBlock> DIAMOND_CHEST;
 
+    public static final ChestUpgradeItem COPPER_UPGRADE_CHEST;
     public static final ChestUpgradeItem IRON_UPGRADE_CHEST;
     public static final ChestUpgradeItem SILVER_UPGRADE_CHEST;
     public static final ChestUpgradeItem GOLD_UPGRADE_CHEST;
@@ -50,30 +51,37 @@ public final class Items implements DefaultModInitializer {
         var diamondChestItem = new ChestItem<>(Blocks.DIAMOND_CHEST.entity(), chestSettings);
         DIAMOND_CHEST = register(ItemGroups.FUNCTIONAL, Blocks.DIAMOND_CHEST.identifier(), diamondChestItem);
 
-        var ironUpgradeChestItem = new ChestUpgradeItem(
+        var copperUpgradeChestItem = new ChestUpgradeItem(
                 chestSettings,
                 ChestTier.T1,
+                getUpgradeChestStateFactory(Blocks.COPPER_CHEST.entity())
+        );
+        COPPER_UPGRADE_CHEST = register(ItemGroups.FUNCTIONAL, Identifiers.of("copper_chest_upgrade"), copperUpgradeChestItem);
+
+        var ironUpgradeChestItem = new ChestUpgradeItem(
+                chestSettings,
+                ChestTier.T2,
                 getUpgradeChestStateFactory(Blocks.IRON_CHEST.entity())
         );
         IRON_UPGRADE_CHEST = register(ItemGroups.FUNCTIONAL, Identifiers.of("iron_chest_upgrade"), ironUpgradeChestItem);
 
         var silverUpgradeChestItem = new ChestUpgradeItem(
                 chestSettings,
-                ChestTier.T2,
+                ChestTier.T3,
                 getUpgradeChestStateFactory(Blocks.SILVER_CHEST.entity())
         );
         SILVER_UPGRADE_CHEST = register(ItemGroups.FUNCTIONAL, Identifiers.of("silver_chest_upgrade"), silverUpgradeChestItem);
 
         var goldUpgradeChestItem = new ChestUpgradeItem(
                 chestSettings,
-                ChestTier.T2,
+                ChestTier.T4,
                 getUpgradeChestStateFactory(Blocks.GOLD_CHEST.entity())
         );
         GOLD_UPGRADE_CHEST = register(ItemGroups.FUNCTIONAL, Identifiers.of("gold_chest_upgrade"), goldUpgradeChestItem);
 
         var diamondUpgradeChestItem = new ChestUpgradeItem(
                 chestSettings,
-                ChestTier.T3,
+                ChestTier.T4,
                 getUpgradeChestStateFactory(Blocks.DIAMOND_CHEST.entity())
         );
         DIAMOND_UPGRADE_CHEST = register(ItemGroups.FUNCTIONAL, Identifiers.of("diamond_chest_upgrade"), diamondUpgradeChestItem);

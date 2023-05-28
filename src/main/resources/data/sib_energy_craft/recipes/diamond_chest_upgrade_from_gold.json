@@ -4,15 +4,15 @@
   "group": "diamond_chest_upgrade",
   "pattern": [
     " # ",
-    "#G#",
+    "#U#",
     " # "
   ],
   "key": {
     "#": {
       "item": "minecraft:diamond"
     },
-    "G": {
-      "item": "sib_energy_craft:gold_plate"
+    "U": {
+      "item": "sib_energy_craft:gold_chest_upgrade"
     }
   },
   "result": {
