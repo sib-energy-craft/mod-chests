@@ -1,5 +1,6 @@
 package com.github.sib_energy_craft.chests.block.entity;
 
+import com.github.sib_energy_craft.chests.ChestTier;
 import com.github.sib_energy_craft.chests.block.SilverExtendedChestBlock;
 import com.github.sib_energy_craft.chests.load.Entities;
 import net.minecraft.block.BlockState;
@@ -26,6 +27,11 @@ public class SilverExtendedChestBlockEntity extends AbstractExtendedChestBlockEn
     protected ScreenHandler createScreenHandler(int syncId,
                                                 @NotNull PlayerInventory playerInventory) {
         return GenericContainerScreenHandler.createGeneric9x6(syncId, playerInventory, this);
+    }
+
+    @Override
+    public ChestTier getTier() {
+        return ChestTier.T3;
     }
 
 }

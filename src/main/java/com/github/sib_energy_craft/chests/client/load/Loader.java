@@ -45,7 +45,7 @@ public class Loader implements ClientModInitializer {
 
     @NotNull
     private static BuiltinItemRendererRegistry.DynamicItemRenderer getDynamicItemRenderer(
-            @Nullable AbstractExtendedChestBlockEntity renderEntity) {
+            @Nullable AbstractExtendedChestBlockEntity<?> renderEntity) {
         return (itemStack, transform, stack, source, light, overlay) -> {
 
             var instance = MinecraftClient.getInstance();

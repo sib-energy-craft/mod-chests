@@ -1,5 +1,6 @@
 package com.github.sib_energy_craft.chests.block.entity;
 
+import com.github.sib_energy_craft.chests.ChestTier;
 import com.github.sib_energy_craft.chests.block.CopperExtendedChestBlock;
 import com.github.sib_energy_craft.chests.load.Entities;
 import net.minecraft.block.BlockState;
@@ -29,4 +30,8 @@ public class CopperExtendedChestBlockEntity extends AbstractExtendedChestBlockEn
         return new GenericContainerScreenHandler(ScreenHandlerType.GENERIC_9X4, syncId, playerInventory, this, 4);
     }
 
+    @Override
+    public ChestTier getTier() {
+        return ChestTier.T1;
+    }
 }

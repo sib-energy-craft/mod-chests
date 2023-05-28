@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "gold_chest_upgrade",
+  "pattern": [
+    " # ",
+    "#I#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "sib_energy_craft:gold_plate"
+    },
+    "I": {
+      "item": "sib_energy_craft:iron_plate"
+    }
+  },
+  "result": {
+    "item": "sib_energy_craft:gold_chest_upgrade"
+  }
+}

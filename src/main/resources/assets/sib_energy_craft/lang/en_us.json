@@ -1,17 +1,21 @@
 {
   "block.sib_energy_craft.iron_chest": "Iron Chest",
+  "item.sib_energy_craft.iron_chest_upgrade": "Upgrade to Iron Chest",
   "container.iron_chest": "Iron Chest",
 
   "block.sib_energy_craft.copper_chest": "Copper Chest",
   "container.copper_chest": "Copper Chest",
 
   "block.sib_energy_craft.gold_chest": "Gold Chest",
+  "item.sib_energy_craft.gold_chest_upgrade": "Upgrade to Gold Chest",
   "container.gold_chest": "Gold Chest",
 
   "block.sib_energy_craft.silver_chest": "Silver Chest",
+  "item.sib_energy_craft.silver_chest_upgrade": "Upgrade to Silver Chest",
   "container.silver_chest": "Silver Chest",
 
   "block.sib_energy_craft.diamond_chest": "Diamond Chest",
+  "item.sib_energy_craft.diamond_chest_upgrade": "Upgrade to Diamond Chest",
   "container.diamond_chest": "Diamond Chest",
 
   "attribute.name.sib_energy_craft.size": "Size: %d"

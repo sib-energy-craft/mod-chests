@@ -1,5 +1,6 @@
 package com.github.sib_energy_craft.chests.block.entity;
 
+import com.github.sib_energy_craft.chests.ChestTier;
 import com.github.sib_energy_craft.chests.block.DiamondExtendedChestBlock;
 import com.github.sib_energy_craft.chests.load.Entities;
 import com.github.sib_energy_craft.chests.load.ScreenHandlers;
@@ -37,5 +38,10 @@ public class DiamondExtendedChestBlockEntity extends AbstractExtendedChestBlockE
     public void writeScreenOpeningData(@NotNull ServerPlayerEntity player,
                                        @NotNull PacketByteBuf buf) {
         buf.writeBlockPos(pos);
+    }
+
+    @Override
+    public ChestTier getTier() {
+        return ChestTier.T4;
     }
 }

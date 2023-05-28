@@ -1,5 +1,6 @@
 package com.github.sib_energy_craft.chests.block.entity;
 
+import com.github.sib_energy_craft.chests.UpgradeableChest;
 import com.github.sib_energy_craft.chests.block.AbstractExtendedChestBlock;
 import com.github.sib_energy_craft.pipes.api.ItemConsumer;
 import com.github.sib_energy_craft.pipes.api.ItemSupplier;
@@ -8,6 +9,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
@@ -29,11 +31,13 @@ import java.util.stream.Collectors;
 public abstract class AbstractExtendedChestBlockEntity<T extends AbstractExtendedChestBlock>
         extends LootableContainerBlockEntity
         implements LidOpenable,
-        ItemSupplier, ItemConsumer {
-    private DefaultedList<ItemStack> inventory;
-    private final ViewerCountManager stateManager;
-    private final ChestLidAnimator lidAnimator;
-    private final String containerName;
+        ItemSupplier, ItemConsumer,
+        UpgradeableChest {
+    protected DefaultedList<ItemStack> inventory;
+    protected final ViewerCountManager stateManager;
+    protected final ChestLidAnimator lidAnimator;
+    protected final String containerName;
+    protected final T block;
 
     protected AbstractExtendedChestBlockEntity(@NotNull BlockEntityType<?> blockEntityType,
                                                @NotNull BlockPos blockPos,
@@ -45,6 +49,24 @@ public abstract class AbstractExtendedChestBlockEntity<T extends AbstractExtende
         this.stateManager = new ChestViewerCountManager<>(this);
         this.lidAnimator = new ChestLidAnimator();
         this.containerName = containerName;
+        this.block = block;
+    }
+
+    protected AbstractExtendedChestBlockEntity(@NotNull BlockEntityType<?> blockEntityType,
+                                               @NotNull BlockPos blockPos,
+                                               @NotNull BlockState blockState,
+                                               @NotNull String containerName,
+                                               @NotNull T block,
+                                               @NotNull Inventory inventory) {
+        super(blockEntityType, blockPos, blockState);
+        this.inventory = DefaultedList.ofSize(block.getSize(), ItemStack.EMPTY);
+        for (int i = 0; i < inventory.size(); i++) {
+            this.inventory.set(i, inventory.getStack(i));
+        }
+        this.stateManager = new ChestViewerCountManager<>(this);
+        this.lidAnimator = new ChestLidAnimator();
+        this.containerName = containerName;
+        this.block = block;
     }
 
     @Override
