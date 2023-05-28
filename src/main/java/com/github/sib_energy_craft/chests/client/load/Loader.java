@@ -26,6 +26,7 @@ public class Loader implements ClientModInitializer {
             new ChestGroup(Items.COPPER_CHEST, Blocks.COPPER_CHEST, Entities.COPPER_CHEST),
             new ChestGroup(Items.IRON_CHEST, Blocks.IRON_CHEST, Entities.IRON_CHEST),
             new ChestGroup(Items.GOLD_CHEST, Blocks.GOLD_CHEST, Entities.GOLD_CHEST),
+            new ChestGroup(Items.SILVER_CHEST, Blocks.SILVER_CHEST, Entities.SILVER_CHEST),
             new ChestGroup(Items.DIAMOND_CHEST, Blocks.DIAMOND_CHEST, Entities.DIAMOND_CHEST)
     );
 

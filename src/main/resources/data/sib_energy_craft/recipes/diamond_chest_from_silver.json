@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "diamond_chest",
+  "pattern": [
+    " # ",
+    "#C#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:diamond"
+    },
+    "C": {
+      "item": "sib_energy_craft:silver_chest"
+    }
+  },
+  "result": {
+    "item": "sib_energy_craft:diamond_chest"
+  }
+}

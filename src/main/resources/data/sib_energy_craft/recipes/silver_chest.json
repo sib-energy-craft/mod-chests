@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "silver_chest",
+  "pattern": [
+    " # ",
+    "#C#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "sib_energy_craft:silver_plate"
+    },
+    "C": {
+      "item": "sib_energy_craft:copper_chest"
+    }
+  },
+  "result": {
+    "item": "sib_energy_craft:silver_chest"
+  }
+}

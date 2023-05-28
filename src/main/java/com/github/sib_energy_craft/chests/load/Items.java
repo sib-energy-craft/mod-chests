@@ -1,8 +1,8 @@
 package com.github.sib_energy_craft.chests.load;
 
+import com.github.sib_energy_craft.chests.block.*;
 import com.github.sib_energy_craft.chests.item.ChestItem;
 import com.github.sib_energy_craft.sec_utils.load.DefaultModInitializer;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 
@@ -14,10 +14,11 @@ import static com.github.sib_energy_craft.sec_utils.utils.ItemUtils.register;
  * @author sibmaks
  */
 public final class Items implements DefaultModInitializer {
-    public static final BlockItem COPPER_CHEST;
-    public static final BlockItem IRON_CHEST;
-    public static final BlockItem GOLD_CHEST;
-    public static final BlockItem DIAMOND_CHEST;
+    public static final ChestItem<CopperExtendedChestBlock> COPPER_CHEST;
+    public static final ChestItem<IronExtendedChestBlock> IRON_CHEST;
+    public static final ChestItem<GoldExtendedChestBlock> GOLD_CHEST;
+    public static final ChestItem<SilverExtendedChestBlock> SILVER_CHEST;
+    public static final ChestItem<DiamondExtendedChestBlock> DIAMOND_CHEST;
 
     static {
         var chestSettings = new Item.Settings();
@@ -30,6 +31,9 @@ public final class Items implements DefaultModInitializer {
 
         var goldChestItem = new ChestItem<>(Blocks.GOLD_CHEST.entity(), chestSettings);
         GOLD_CHEST = register(ItemGroups.FUNCTIONAL, Blocks.GOLD_CHEST.identifier(), goldChestItem);
+
+        var silverChestItem = new ChestItem<>(Blocks.SILVER_CHEST.entity(), chestSettings);
+        SILVER_CHEST = register(ItemGroups.FUNCTIONAL, Blocks.SILVER_CHEST.identifier(), silverChestItem);
 
         var diamondChestItem = new ChestItem<>(Blocks.DIAMOND_CHEST.entity(), chestSettings);
         DIAMOND_CHEST = register(ItemGroups.FUNCTIONAL, Blocks.DIAMOND_CHEST.identifier(), diamondChestItem);
