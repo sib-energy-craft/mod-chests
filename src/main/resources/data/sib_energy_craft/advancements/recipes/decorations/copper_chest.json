@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_iron_chest": {
+    "has_chest": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "sib_energy_craft:iron_chest"
+              "minecraft:chest"
             ]
           }
         ]
@@ -39,7 +39,7 @@
   },
   "requirements": [
     [
-      "has_iron_chest",
+      "has_chest",
       "has_copper_plate",
       "has_the_recipe"
     ]

@@ -3,9 +3,9 @@
   "category": "misc",
   "group": "diamond_chest",
   "pattern": [
-    "###",
+    " # ",
     "#C#",
-    "###"
+    " # "
   ],
   "key": {
     "#": {

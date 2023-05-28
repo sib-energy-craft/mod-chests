@@ -3,9 +3,9 @@
   "category": "misc",
   "group": "gold_chest",
   "pattern": [
-    "###",
+    " # ",
     "#C#",
-    "###"
+    " # "
   ],
   "key": {
     "#": {
