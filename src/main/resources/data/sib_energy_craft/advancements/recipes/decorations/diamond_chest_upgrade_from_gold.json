@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sib_energy_craft:diamond_chest_upgrade_from_gold"
+    ]
+  },
+  "criteria": {
+    "has_gold_chest_upgrade": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sib_energy_craft:gold_chest_upgrade"
+            ]
+          }
+        ]
+      }
+    },
+    "has_diamond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:diamond"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sib_energy_craft:diamond_chest_upgrade_from_gold"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gold_chest_upgrade",
+      "has_diamond",
+      "has_the_recipe"
+    ]
+  ]
+}

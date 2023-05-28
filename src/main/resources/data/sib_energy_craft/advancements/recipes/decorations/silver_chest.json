@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sib_energy_craft:silver_chest"
+    ]
+  },
+  "criteria": {
+    "has_iron_chest": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sib_energy_craft:iron_chest"
+            ]
+          }
+        ]
+      }
+    },
+    "has_silver_plate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sib_energy_craft:silver_plate"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sib_energy_craft:silver_chest"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_iron_chest",
+      "has_silver_plate",
+      "has_the_recipe"
+    ]
+  ]
+}

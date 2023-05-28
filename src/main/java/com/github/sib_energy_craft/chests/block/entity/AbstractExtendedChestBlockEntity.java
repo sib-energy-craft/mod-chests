@@ -1,19 +1,19 @@
 package com.github.sib_energy_craft.chests.block.entity;
 
+import com.github.sib_energy_craft.chests.UpgradeableChest;
+import com.github.sib_energy_craft.chests.block.AbstractExtendedChestBlock;
 import com.github.sib_energy_craft.pipes.api.ItemConsumer;
 import com.github.sib_energy_craft.pipes.api.ItemSupplier;
 import com.github.sib_energy_craft.pipes.utils.PipeUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.DoubleInventory;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -28,63 +28,50 @@ import java.util.stream.Collectors;
  * @since 0.0.1
  * @author sibmaks
  */
-public abstract class AbstractExtendedChestBlockEntity extends LootableContainerBlockEntity implements LidOpenable,
-        ItemSupplier, ItemConsumer {
-    private DefaultedList<ItemStack> inventory;
-    private final ViewerCountManager stateManager;
-    private final ChestLidAnimator lidAnimator;
-    private final String containerName;
-    private final int size;
+public abstract class AbstractExtendedChestBlockEntity<T extends AbstractExtendedChestBlock>
+        extends LootableContainerBlockEntity
+        implements LidOpenable,
+        ItemSupplier, ItemConsumer,
+        UpgradeableChest {
+    protected DefaultedList<ItemStack> inventory;
+    protected final ViewerCountManager stateManager;
+    protected final ChestLidAnimator lidAnimator;
+    protected final String containerName;
+    protected final T block;
 
     protected AbstractExtendedChestBlockEntity(@NotNull BlockEntityType<?> blockEntityType,
                                                @NotNull BlockPos blockPos,
                                                @NotNull BlockState blockState,
                                                @NotNull String containerName,
-                                               int size) {
+                                               @NotNull T block) {
         super(blockEntityType, blockPos, blockState);
-        this.inventory = DefaultedList.ofSize(size, ItemStack.EMPTY);
-        this.stateManager = new ViewerCountManager() {
-            @Override
-            protected void onContainerOpen(@NotNull World world,
-                                           @NotNull BlockPos pos,
-                                           @NotNull BlockState state) {
-                AbstractExtendedChestBlockEntity.playSound(world, pos, state, SoundEvents.BLOCK_CHEST_OPEN);
-            }
-
-            @Override
-            protected void onContainerClose(World world, BlockPos pos, BlockState state) {
-                AbstractExtendedChestBlockEntity.playSound(world, pos, state, SoundEvents.BLOCK_CHEST_CLOSE);
-            }
-
-            @Override
-            protected void onViewerCountUpdate(@NotNull World world,
-                                               @NotNull BlockPos pos,
-                                               @NotNull BlockState state,
-                                               int oldViewerCount,
-                                               int newViewerCount) {
-                AbstractExtendedChestBlockEntity.this.onViewerCountUpdate(world, pos, state, oldViewerCount, newViewerCount);
-            }
-
-            @Override
-            protected boolean isPlayerViewing(@NotNull PlayerEntity player) {
-                if (!(player.currentScreenHandler instanceof GenericContainerScreenHandler genericContainerScreenHandler)) {
-                    return false;
-                } else {
-                    var inventory = genericContainerScreenHandler.getInventory();
-                    return inventory == AbstractExtendedChestBlockEntity.this ||
-                            inventory instanceof DoubleInventory doubleInventory &&
-                                    doubleInventory.isPart(AbstractExtendedChestBlockEntity.this);
-                }
-            }
-        };
+        this.inventory = DefaultedList.ofSize(block.getSize(), ItemStack.EMPTY);
+        this.stateManager = new ChestViewerCountManager<>(this);
         this.lidAnimator = new ChestLidAnimator();
         this.containerName = containerName;
-        this.size = size;
+        this.block = block;
+    }
+
+    protected AbstractExtendedChestBlockEntity(@NotNull BlockEntityType<?> blockEntityType,
+                                               @NotNull BlockPos blockPos,
+                                               @NotNull BlockState blockState,
+                                               @NotNull String containerName,
+                                               @NotNull T block,
+                                               @NotNull Inventory inventory) {
+        super(blockEntityType, blockPos, blockState);
+        this.inventory = DefaultedList.ofSize(block.getSize(), ItemStack.EMPTY);
+        for (int i = 0; i < inventory.size(); i++) {
+            this.inventory.set(i, inventory.getStack(i));
+        }
+        this.stateManager = new ChestViewerCountManager<>(this);
+        this.lidAnimator = new ChestLidAnimator();
+        this.containerName = containerName;
+        this.block = block;
     }
 
     @Override
     public int size() {
-        return size;
+        return inventory.size();
     }
 
     @NotNull
@@ -114,7 +101,7 @@ public abstract class AbstractExtendedChestBlockEntity extends LootableContainer
     public static void clientTick(@NotNull World world,
                                   @NotNull BlockPos pos,
                                   @NotNull BlockState state,
-                                  @NotNull AbstractExtendedChestBlockEntity blockEntity) {
+                                  @NotNull AbstractExtendedChestBlockEntity<?> blockEntity) {
         blockEntity.lidAnimator.step();
     }
 

@@ -3,16 +3,16 @@
   "category": "misc",
   "group": "gold_chest",
   "pattern": [
-    "###",
+    " # ",
     "#C#",
-    "###"
+    " # "
   ],
   "key": {
     "#": {
       "item": "sib_energy_craft:gold_plate"
     },
     "C": {
-      "item": "sib_energy_craft:copper_chest"
+      "item": "sib_energy_craft:iron_chest"
     }
   },
   "result": {

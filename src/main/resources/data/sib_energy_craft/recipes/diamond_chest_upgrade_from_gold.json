@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "diamond_chest_upgrade",
+  "pattern": [
+    " # ",
+    "#U#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:diamond"
+    },
+    "U": {
+      "item": "sib_energy_craft:gold_chest_upgrade"
+    }
+  },
+  "result": {
+    "item": "sib_energy_craft:diamond_chest_upgrade"
+  }
+}

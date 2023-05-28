@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "sib_energy_craft:gold_chest",
+    "sib_energy_craft:silver_chest",
     "sib_energy_craft:diamond_chest"
   ]
 }

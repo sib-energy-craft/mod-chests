@@ -1,13 +1,23 @@
 {
   "block.sib_energy_craft.iron_chest": "Железный сундук",
+  "item.sib_energy_craft.iron_chest_upgrade": "Улучшение до железного сундука",
   "container.iron_chest": "Железный сундук",
 
   "block.sib_energy_craft.copper_chest": "Медный сундук",
+  "item.sib_energy_craft.copper_chest_upgrade": "Улучшение до медного сундука",
   "container.copper_chest": "Медный сундук",
 
   "block.sib_energy_craft.gold_chest": "Золотой сундук",
+  "item.sib_energy_craft.gold_chest_upgrade": "Улучшение до золотого сундука",
   "container.gold_chest": "Золотой сундук",
 
+  "block.sib_energy_craft.silver_chest": "Серебряный сундук",
+  "item.sib_energy_craft.silver_chest_upgrade": "Улучшение до серебряного сундука",
+  "container.silver_chest": "Серебряный сундук",
+
   "block.sib_energy_craft.diamond_chest": "Алмазный сундук",
-  "container.diamond_chest": "Алмазный сундук"
+  "item.sib_energy_craft.diamond_chest_upgrade": "Улучшение до алмазного сундука",
+  "container.diamond_chest": "Алмазный сундук",
+
+  "attribute.name.sib_energy_craft.size": "Размер: %d"
 }

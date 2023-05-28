@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "silver_chest_upgrade",
+  "pattern": [
+    " # ",
+    "#U#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "sib_energy_craft:silver_plate"
+    },
+    "U": {
+      "item": "sib_energy_craft:iron_chest_upgrade"
+    }
+  },
+  "result": {
+    "item": "sib_energy_craft:silver_chest_upgrade"
+  }
+}
