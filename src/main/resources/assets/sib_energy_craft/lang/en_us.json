@@ -9,5 +9,7 @@
   "container.gold_chest": "Gold Chest",
 
   "block.sib_energy_craft.diamond_chest": "Diamond Chest",
-  "container.diamond_chest": "Diamond Chest"
+  "container.diamond_chest": "Diamond Chest",
+
+  "attribute.name.sib_energy_craft.size": "Size: %d"
 }

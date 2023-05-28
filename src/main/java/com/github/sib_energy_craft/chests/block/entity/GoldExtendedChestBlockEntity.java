@@ -1,5 +1,6 @@
 package com.github.sib_energy_craft.chests.block.entity;
 
+import com.github.sib_energy_craft.chests.block.GoldExtendedChestBlock;
 import com.github.sib_energy_craft.chests.load.Entities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
@@ -12,11 +13,12 @@ import org.jetbrains.annotations.NotNull;
  * @since 0.0.1
  * @author sibmaks
  */
-public class GoldExtendedChestBlockEntity extends AbstractExtendedChestBlockEntity {
+public class GoldExtendedChestBlockEntity extends AbstractExtendedChestBlockEntity<GoldExtendedChestBlock> {
 
     public GoldExtendedChestBlockEntity(@NotNull BlockPos blockPos,
-                                        @NotNull BlockState blockState) {
-        super(Entities.GOLD_CHEST, blockPos, blockState, "container.gold_chest", 54);
+                                        @NotNull BlockState blockState,
+                                        @NotNull GoldExtendedChestBlock block) {
+        super(Entities.GOLD_CHEST, blockPos, blockState, "container.gold_chest", block);
     }
 
     @NotNull

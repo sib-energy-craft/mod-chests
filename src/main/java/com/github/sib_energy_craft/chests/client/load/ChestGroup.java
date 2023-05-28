@@ -16,6 +16,6 @@ import net.minecraft.item.Item;
 @AllArgsConstructor
 public class ChestGroup {
     private Item blockItem;
-    private Identified< ? extends AbstractExtendedChestBlock<?>> block;
-    private BlockEntityType<? extends AbstractExtendedChestBlockEntity> entity;
+    private Identified< ? extends AbstractExtendedChestBlock> block;
+    private BlockEntityType<? extends AbstractExtendedChestBlockEntity<?>> entity;
 }

@@ -9,5 +9,7 @@
   "container.gold_chest": "Золотой сундук",
 
   "block.sib_energy_craft.diamond_chest": "Алмазный сундук",
-  "container.diamond_chest": "Алмазный сундук"
+  "container.diamond_chest": "Алмазный сундук",
+
+  "attribute.name.sib_energy_craft.size": "Размер: %d"
 }

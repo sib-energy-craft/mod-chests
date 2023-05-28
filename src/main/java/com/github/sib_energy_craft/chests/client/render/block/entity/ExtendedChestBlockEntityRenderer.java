@@ -30,13 +30,13 @@ import org.jetbrains.annotations.NotNull;
 @Environment(EnvType.CLIENT)
 public class ExtendedChestBlockEntityRenderer<T extends BlockEntity & LidOpenable> implements BlockEntityRenderer<T> {
 
-    private final Identified<? extends AbstractExtendedChestBlock<?>> block;
+    private final Identified<? extends AbstractExtendedChestBlock> block;
     private final ModelPart singleChestLid;
     private final ModelPart singleChestBase;
     private final ModelPart singleChestLatch;
 
     public ExtendedChestBlockEntityRenderer(@NotNull BlockEntityRendererFactory.Context ctx,
-                                            @NotNull Identified<? extends AbstractExtendedChestBlock<?>> block) {
+                                            @NotNull Identified<? extends AbstractExtendedChestBlock> block) {
         this.block = block;
         var modelPart = ctx.getLayerModelPart(EntityModelLayers.CHEST);
         this.singleChestBase = modelPart.getChild("bottom");
@@ -56,7 +56,7 @@ public class ExtendedChestBlockEntityRenderer<T extends BlockEntity & LidOpenabl
         var blockState = worldIsNull ? entity.getCachedState() : block.entity().getDefaultState()
                 .with(AbstractExtendedChestBlock.FACING, Direction.SOUTH);
         var block = blockState.getBlock();
-        if (!(block instanceof AbstractExtendedChestBlock<?> abstractChestBlock)) {
+        if (!(block instanceof AbstractExtendedChestBlock abstractChestBlock)) {
             return;
         }
         matrices.push();
@@ -64,7 +64,7 @@ public class ExtendedChestBlockEntityRenderer<T extends BlockEntity & LidOpenabl
         matrices.translate(0.5F, 0.5F, 0.5F);
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
         matrices.translate(-0.5F, -0.5F, -0.5F);
-        DoubleBlockProperties.PropertySource<? extends AbstractExtendedChestBlockEntity> propertySource;
+        DoubleBlockProperties.PropertySource<? extends AbstractExtendedChestBlockEntity<?>> propertySource;
         if (worldIsNull) {
             propertySource = abstractChestBlock.getBlockEntitySource(blockState, world, entity.getPos(), true);
         } else {

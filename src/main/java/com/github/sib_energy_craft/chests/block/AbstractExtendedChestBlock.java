@@ -2,6 +2,7 @@ package com.github.sib_energy_craft.chests.block;
 
 import com.github.sib_energy_craft.chests.block.entity.AbstractExtendedChestBlockEntity;
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
+import lombok.Getter;
 import net.minecraft.block.*;
 import net.minecraft.block.DoubleBlockProperties.PropertyRetriever;
 import net.minecraft.block.entity.BlockEntity;
@@ -44,15 +45,14 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.BiPredicate;
-import java.util.function.Supplier;
 
 /**
  * @since 0.0.1
  * @author sibmaks
  */
-public abstract class AbstractExtendedChestBlock<E extends AbstractExtendedChestBlockEntity> extends BlockWithEntity
+public abstract class AbstractExtendedChestBlock extends BlockWithEntity
         implements Waterloggable {
-    private static final DoubleBlockProperties.PropertyRetriever<AbstractExtendedChestBlockEntity, Optional<Inventory>>
+    private static final DoubleBlockProperties.PropertyRetriever<AbstractExtendedChestBlockEntity<?>, Optional<Inventory>>
             INVENTORY_RETRIEVER = new DoubleBlockProperties.PropertyRetriever<>() {
         @NotNull
         @Override
@@ -79,13 +79,13 @@ public abstract class AbstractExtendedChestBlock<E extends AbstractExtendedChest
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape SINGLE_SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
 
-
-    protected final Supplier<BlockEntityType<? extends E>> entityTypeRetriever;
+    @Getter
+    protected final int size;
 
     protected AbstractExtendedChestBlock(@NotNull AbstractBlock.Settings settings,
-                                         @NotNull Supplier<BlockEntityType<? extends E>> entityTypeSupplier) {
+                                         int size) {
         super(settings);
-        this.entityTypeRetriever = entityTypeSupplier;
+        this.size = size;
         this.setDefaultState(this.stateManager.getDefaultState()
                 .with(FACING, Direction.NORTH)
                 .with(WATERLOGGED, false));
@@ -164,7 +164,7 @@ public abstract class AbstractExtendedChestBlock<E extends AbstractExtendedChest
             return;
         }
         var blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof AbstractExtendedChestBlockEntity chestBlockEntity) {
+        if (blockEntity instanceof AbstractExtendedChestBlockEntity<?> chestBlockEntity) {
             chestBlockEntity.setCustomName(itemStack.getName());
         }
     }
@@ -213,13 +213,8 @@ public abstract class AbstractExtendedChestBlock<E extends AbstractExtendedChest
         return Stats.CUSTOM.getOrCreateStat(Stats.OPEN_CHEST);
     }
 
-    @NotNull
-    public BlockEntityType<? extends AbstractExtendedChestBlockEntity> getExpectedEntityType() {
-        return this.entityTypeRetriever.get();
-    }
-
     @Nullable
-    public static Inventory getInventory(@NotNull AbstractExtendedChestBlock<?> block,
+    public static Inventory getInventory(@NotNull AbstractExtendedChestBlock block,
                                          @NotNull BlockState state,
                                          @NotNull World world,
                                          @NotNull BlockPos pos,
@@ -235,7 +230,7 @@ public abstract class AbstractExtendedChestBlock<E extends AbstractExtendedChest
                                                                 @NotNull World world,
                                                                 @NotNull BlockPos pos) {
         var blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof AbstractExtendedChestBlockEntity chestBlockEntity) {
+        if (blockEntity instanceof AbstractExtendedChestBlockEntity<?> chestBlockEntity) {
             return chestBlockEntity;
         }
         return null;
@@ -246,7 +241,7 @@ public abstract class AbstractExtendedChestBlock<E extends AbstractExtendedChest
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull World world,
                                                                   @NotNull BlockState state,
                                                                   @NotNull BlockEntityType<T> type) {
-        return world.isClient ? checkType(type, this.getExpectedEntityType(), AbstractExtendedChestBlockEntity::clientTick) : null;
+        return world.isClient ? checkType(type, getBlockEntityType(), AbstractExtendedChestBlockEntity::clientTick) : null;
     }
 
     public static boolean isChestBlocked(@NotNull WorldAccess world,
@@ -320,13 +315,20 @@ public abstract class AbstractExtendedChestBlock<E extends AbstractExtendedChest
                               @NotNull BlockPos pos,
                               @NotNull Random random) {
         var blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof AbstractExtendedChestBlockEntity extendedChestBlockEntity) {
+        if (blockEntity instanceof AbstractExtendedChestBlockEntity<?> extendedChestBlockEntity) {
             extendedChestBlockEntity.onScheduledTick();
         }
     }
 
+    /**
+     * Get block entity type
+     *
+     * @return block entity type
+     */
+    abstract protected BlockEntityType<? extends AbstractExtendedChestBlockEntity<?>> getBlockEntityType();
+
     @NotNull
-    public DoubleBlockProperties.PropertySource<? extends AbstractExtendedChestBlockEntity> getBlockEntitySource(
+    public DoubleBlockProperties.PropertySource<? extends AbstractExtendedChestBlockEntity<?>> getBlockEntitySource(
             @NotNull BlockState state,
             @NotNull World world,
             @NotNull BlockPos pos,
@@ -337,16 +339,14 @@ public abstract class AbstractExtendedChestBlock<E extends AbstractExtendedChest
         } else {
             biPredicate = AbstractExtendedChestBlock::isChestBlocked;
         }
-
-        var blockEntityType = this.entityTypeRetriever.get();
-
+        var blockEntityType = getBlockEntityType();
         return DoubleBlockProperties.toPropertySource(blockEntityType, (it) -> DoubleBlockProperties.Type.SINGLE,
                 ChestBlock::getFacing, FACING, state, world, pos,
                 biPredicate);
     }
 
     @NotNull
-    public static PropertyRetriever<AbstractExtendedChestBlockEntity, Float2FloatFunction> getAnimationProgressRetriever(
+    public static PropertyRetriever<AbstractExtendedChestBlockEntity<?>, Float2FloatFunction> getAnimationProgressRetriever(
             @NotNull LidOpenable progress) {
         return new DoubleBlockProperties.PropertyRetriever<>() {
             @NotNull
