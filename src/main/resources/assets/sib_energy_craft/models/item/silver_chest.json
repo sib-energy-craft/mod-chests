@@ -1,7 +1,7 @@
 {
     "parent": "builtin/entity",
     "textures": {
-        "particle": "minecraft:block/silver_block"
+        "particle": "sib_energy_craft:block/silver_block"
     },
     "display": {
         "gui": {
